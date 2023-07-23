@@ -36,7 +36,7 @@ class BaseClient:
         self.client_id = client_id
 
         if handler is not None:
-            if not inspect.isfunction(handler):
+            if not (inspect.isfunction(handler) or inspect.ismethod(handler)):
                 raise PyPresenceException('Error handler must be a function.')
             args = inspect.getfullargspec(handler).args
             if args[0] == 'self':
